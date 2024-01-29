@@ -1,4 +1,5 @@
 <?php
+    define('LETTERS', 'ABCDEFGHJKLMNPQRSTUVXYWZIO');
     function sayYa(){
         echo 'Ya<br />';
     }
@@ -32,7 +33,7 @@
         //        }
         //     }
         // }
-        define('LETTERS', 'ABCDEFGHJKLMNPQRSTUVXYWZIO');
+        
         if (preg_match('/^[A-Z][12][0-9]{8}$/',$id)){
             $c1 = substr($id, 0, 1);
             $a12 = strpos(LETTERS, $c1) + 10;
@@ -56,16 +57,30 @@
     }
 
     function createTWIdByRandown(){
-        return 'A123456789';
+        $area = substr(LETTERS, rand(0,25), 1);
+        return createTWIdByAreaCode($area);
     }
     function createTWIdByAreaCode($areaCode = 'A'){
-        return 'A123456789';
+        $gender = rand(0,1) == 0;
+        return createTWIdByAreaCodeAndGender($areaCode, $gender);
     }
     function createTWIdByGender($gender = true){
-        return 'A123456789';
+        $area = substr(LETTERS, rand(0,25), 1);
+        return createTWIdByAreaCodeAndGender($area, $gender);;
     }
     function createTWIdByAreaCodeAndGender($areaCode, $gender){
-        return 'A123456789';
+        $id = $areaCode;
+        $id .= $gender?'1':'2';
+        for ($i = 0; $i<7; $i++) $id .= rand(0,9);
+
+        for ($i = 0; $i < 10 ; $i++){
+            if (checkTWId($id . $i)){
+                $id .= $i;
+                break;
+            }
+        }
+
+        return $id;
     }
 
 
