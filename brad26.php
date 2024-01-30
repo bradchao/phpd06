@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set('Asia/Taipei');
     $dir = '.';
     $fp = opendir($dir);
 ?>
@@ -25,7 +26,9 @@
         }
         
         echo "<td align='right'>" . filesize($fullname) . " bytes</td>";
-        echo "<td></td>";
+        
+        $mtime = date('Y-m-d H:i:s', filemtime($fullname));
+        echo "<td align='center'>" . $mtime . "</td>";
         echo '</tr>';    
     }
     ?>
