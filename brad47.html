@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function test1(){
+                $('#id1').load('brad48.php?max=' + $('#max').val());
+            }
+            function test2(){
+                $.get('brad48.php?max=' + $('#max').val(), function(data,status){
+                    if (status == 'success'){
+                        $('#id1').html(data);
+                    }
+                });
+            }
+            function test3(){
+                $.post('brad48.php',
+                {
+                    max: $('#max').val()
+                },
+                function(data,status){
+                    if (status == 'success'){
+                        $('#id1').html(data);
+                    }
+                });
+            }
+            function test4(){
+                $.ajax({
+                    url: 'brad48.php',
+                    method: 'post',
+                    data: {
+                        max: $('#max').val()
+                    },
+                    success: function(data){
+                        $('#id1').html(data);
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        Lottery: <span id="id1"></span><br />
+        Max: <input type="number" id="max" /><br />
+        <button onclick="test1()">Test1(Load)</button>
+        <button onclick="test2()">Test2(Get)</button>
+        <button onclick="test3()">Test3(Post)</button>
+        <button onclick="test4()">Test4(AJAX)</button>
+    </body>
+</html>

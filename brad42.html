@@ -1,7 +1,18 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    var isDataValid = false;
+    function checkAccount(){
+        $('#mesg').load('checkAccount.php?account=' + $('#account').val());
+    }
+    function checkFormData(){
+        return true;
+    }
+</script>
 <h1>Register</h1>
 <hr />
-<form action="brad43.php" method="post">
-    Account: <input name="account" /><br />
+<form action="brad43.php" method="post" onsubmit="return checkFormData();">
+    Account: <input name="account" id='account' onblur="checkAccount()"/>
+    <span id="mesg"></span><br />
     Password: <input type="password" name="passwd" /><br />
     Name: <input name="name" /><br />
     <input type="submit" value="Register" />
