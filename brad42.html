@@ -10,10 +10,14 @@
 </script>
 <h1>Register</h1>
 <hr />
-<form action="brad43.php" method="post" onsubmit="return checkFormData();">
+<form action="brad43.php" 
+    enctype="multipart/form-data"
+    method="post" 
+    onsubmit="return checkFormData();">
     Account: <input name="account" id='account' onblur="checkAccount()"/>
     <span id="mesg"></span><br />
     Password: <input type="password" name="passwd" /><br />
     Name: <input name="name" /><br />
+    Icon: <input type="file" name="icon" /><br />
     <input type="submit" value="Register" />
 </form>
