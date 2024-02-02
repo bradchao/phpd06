@@ -1,17 +1,22 @@
 <?php
+    include('bradapis.php');
+    session_start();
+
     if (isset($_POST['account'])){
         $account = $_POST['account']; $passwd = $_POST['passwd'];
         $mysqli = new mysqli('localhost','root','', 'iii');
         $mysqli->set_charset('utf8');
-        $sql = 'SELECT id,account,passwd,name FROM member WHERE account = ?';
+        $sql = 'SELECT id,account,passwd,name,icon,icontype FROM member WHERE account = ?';
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('s', $account);
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows > 0){
-            $stmt->bind_result($id,$account,$hashpasswd,$name);
+            $stmt->bind_result($id,$account,$hashpasswd,$name,$icon,$icontype);
             $stmt->fetch();
             if (password_verify($passwd,$hashpasswd)){
+                $_SESSION['member'] = new Member(
+                    $id,$account,$hashpasswd,$name,$icon,$icontype);
                 header('Location: main.php');
             }
         }

@@ -95,7 +95,29 @@
         public function getName(){return $this->name;}
         public function sum(){return $this->ch + $this->eng + $this->math;}
         public function avg(){return $this->sum() / 3;}
+        public function setMath($math){$this->math = $math;}
 
+    }
+
+    class Member {
+        private $id, $account, $name, $passwd, $icon, $icontype;
+        public function __construct($id, $account, $passwd, $name, $icon, $icontype){
+            $this->id = $id;
+            $this->account = $account;
+            $this->name = $name;
+            $this->passwd = $passwd;
+            $this->icon = $icon;
+            $this->icontype = $icontype;
+        } 
+
+        public function getId(){return $this->id;}
+        public function getAccount(){return $this->account;}
+        public function getName(){return $this->name;}
+        public function getPasswd(){return $this->passwd;}
+        public function getIcon(){return $this->icon;}
+        public function getIcontype(){return $this->icontype;}
+
+  
     }
 
     
