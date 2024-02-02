@@ -83,7 +83,20 @@
         return $id;
     }
 
+    class Student {
+        private $name, $ch, $eng, $math;
+        public function __construct($name, $ch, $eng, $math){
+            $this->name = $name;
+            $this->ch = $ch;
+            $this->eng = $eng;
+            $this->math = $math;
+        }
 
+        public function getName(){return $this->name;}
+        public function sum(){return $this->ch + $this->eng + $this->math;}
+        public function avg(){return $this->sum() / 3;}
+
+    }
 
     
 
